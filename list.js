@@ -48,7 +48,15 @@ const linkedListFactory = () => {
     return head;
   };
 
-  return { head, nextNode, toString, append, prepend, size, fetchHead };
+  const tail = () => {
+    let start = head;
+    while (start.nextNode !== null) {
+      start = start.nextNode;
+    }
+    return start;
+  };
+
+  return { head, nextNode, toString, append, prepend, size, fetchHead, tail };
 };
 
 const nodeFactory = (contains) => {
@@ -63,17 +71,6 @@ const nodeFactory = (contains) => {
 let linkedList = linkedListFactory();
 linkedList.prepend(3);
 linkedList.prepend(5);
-
-//linkedList.append(7);
-
-//console.log(linkedList.size());
-
-console.log(linkedList.fetchHead());
-
-console.log();
-
 linkedList.append(7);
 
-console.log(linkedList.fetchHead());
-
-//linkedList.toString();
+console.log(linkedList.tail());
