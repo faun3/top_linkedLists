@@ -7,6 +7,7 @@ const linkedListFactory = () => {
       process.stdout.write(`( ${start.value} ) -> `);
       start = start.nextNode;
     }
+    process.stdout.write(`( ${start.value} ) -> `);
     process.stdout.write(`null`);
     console.log();
   };
@@ -56,7 +57,25 @@ const linkedListFactory = () => {
     return start;
   };
 
-  return { head, nextNode, toString, append, prepend, size, fetchHead, tail };
+  const pop = () => {
+    let start = head;
+    while (start.nextNode !== null) {
+      start = start.nextNode;
+    }
+    let copy = start;
+    start = null;
+    return copy;
+  };
+
+  return {
+    toString,
+    append,
+    prepend,
+    size,
+    fetchHead,
+    tail,
+    pop,
+  };
 };
 
 const nodeFactory = (contains) => {
@@ -69,8 +88,13 @@ const nodeFactory = (contains) => {
 };
 
 let linkedList = linkedListFactory();
+
 linkedList.prepend(3);
 linkedList.prepend(5);
 linkedList.append(7);
 
-console.log(linkedList.tail());
+linkedList.toString();
+
+linkedList.pop();
+
+linkedList.toString();
