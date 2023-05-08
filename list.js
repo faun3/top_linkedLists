@@ -59,11 +59,11 @@ const linkedListFactory = () => {
 
   const pop = () => {
     let start = head;
-    while (start.nextNode !== null) {
+    while (start.nextNode.nextNode !== null) {
       start = start.nextNode;
     }
-    let copy = start;
-    start = null;
+    let copy = start.nextNode;
+    start.nextNode = null;
     return copy;
   };
 
@@ -93,8 +93,8 @@ linkedList.prepend(3);
 linkedList.prepend(5);
 linkedList.append(7);
 
-linkedList.toString();
+console.log(linkedList.fetchHead());
 
 linkedList.pop();
 
-linkedList.toString();
+console.log(linkedList.fetchHead());
