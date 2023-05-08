@@ -13,17 +13,25 @@ const linkedListFactory = () => {
 
   const append = (value) => {
     let newNode = nodeFactory(value);
-    //let headCopy = head;
-    while (head.nextNode !== null) {
-      head = head.nextNode;
+    if (head.value === null) {
+      head = newNode;
+    } else {
+      let start = head;
+      while (start.nextNode !== null) {
+        start = start.nextNode;
+      }
+      start.nextNode = newNode;
     }
-    head.nextNode = newNode;
   };
 
   const prepend = (value) => {
     let newNode = nodeFactory(value);
-    newNode.nextNode = head;
-    head = newNode;
+    if (head.value === null) {
+      head.value = newNode.value;
+    } else {
+      newNode.nextNode = head;
+      head = newNode;
+    }
   };
 
   const size = () => {
@@ -36,7 +44,11 @@ const linkedListFactory = () => {
     return len;
   };
 
-  return { head, nextNode, toString, append, prepend, size };
+  const fetchHead = () => {
+    return head;
+  };
+
+  return { head, nextNode, toString, append, prepend, size, fetchHead };
 };
 
 const nodeFactory = (contains) => {
@@ -54,6 +66,14 @@ linkedList.prepend(5);
 
 //linkedList.append(7);
 
-console.log(linkedList.size());
+//console.log(linkedList.size());
 
-linkedList.toString();
+console.log(linkedList.fetchHead());
+
+console.log();
+
+linkedList.append(7);
+
+console.log(linkedList.fetchHead());
+
+//linkedList.toString();
