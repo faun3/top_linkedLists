@@ -42,7 +42,7 @@ const linkedListFactory = () => {
       len++;
       start = start.nextNode;
     }
-    return len;
+    return len + 1;
   };
 
   const fetchHead = () => {
@@ -89,6 +89,22 @@ const linkedListFactory = () => {
     else return null;
   };
 
+  const insertAt = (val, index) => {
+    if (index === 0) prepend(val);
+    else if (index >= size) append(val);
+    else {
+      let counter = 1;
+      let start = head;
+      while (start.nextNode !== null && counter < index) {
+        start = start.nextNode;
+        counter++;
+      }
+      let newNode = nodeFactory(val);
+      newNode.nextNode = start.nextNode;
+      start.nextNode = newNode;
+    }
+  };
+
   return {
     toString,
     append,
@@ -99,6 +115,7 @@ const linkedListFactory = () => {
     pop,
     contains,
     find,
+    insertAt,
   };
 };
 
@@ -116,6 +133,11 @@ let linkedList = linkedListFactory();
 linkedList.prepend(3);
 linkedList.prepend(5);
 linkedList.append(7);
+linkedList.append(9);
 
-console.log(linkedList.find(5));
-console.log(linkedList.find(8));
+linkedList.toString();
+console.log(linkedList.size());
+
+linkedList.insertAt(10, 2);
+
+linkedList.toString();
