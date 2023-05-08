@@ -77,6 +77,18 @@ const linkedListFactory = () => {
     else return false;
   };
 
+  const find = (check) => {
+    let index = 0;
+    let start = head;
+    while (start.nextNode !== null) {
+      if (start.value === check) return index;
+      index++;
+      start = start.nextNode;
+    }
+    if (start.value === check) return index;
+    else return null;
+  };
+
   return {
     toString,
     append,
@@ -86,6 +98,7 @@ const linkedListFactory = () => {
     tail,
     pop,
     contains,
+    find,
   };
 };
 
@@ -104,5 +117,5 @@ linkedList.prepend(3);
 linkedList.prepend(5);
 linkedList.append(7);
 
-console.log(linkedList.contains(7));
-console.log(linkedList.contains(8));
+console.log(linkedList.find(5));
+console.log(linkedList.find(8));
