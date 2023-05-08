@@ -14,7 +14,7 @@ const linkedListFactory = () => {
   const append = (value) => {
     let newNode = nodeFactory(value);
     let headCopy = head;
-    if (head === null) {
+    if (head.value === null) {
       head = newNode;
     } else {
       while (head.nextNode !== null) {
@@ -24,7 +24,13 @@ const linkedListFactory = () => {
     }
   };
 
-  return { head, nextNode, toString, append };
+  const prepend = (value) => {
+    let newNode = nodeFactory(value);
+    newNode.nextNode = head;
+    head = newNode;
+  };
+
+  return { head, nextNode, toString, append, prepend };
 };
 
 const nodeFactory = (contains) => {
@@ -37,5 +43,6 @@ const nodeFactory = (contains) => {
 };
 
 let linkedList = linkedListFactory();
-linkedList.append(3);
+linkedList.prepend(3);
+linkedList.prepend(5);
 linkedList.toString();
