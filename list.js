@@ -105,6 +105,22 @@ const linkedListFactory = () => {
     }
   };
 
+  const removeAt = (index) => {
+    if (index === 0) {
+      head = head.nextNode;
+    } else if (index >= size() - 1) {
+      pop();
+    } else {
+      let count = 1;
+      let start = head;
+      while (start.nextNode !== null && count < index) {
+        start = start.nextNode;
+        count++;
+      }
+      start.nextNode = start.nextNode.nextNode;
+    }
+  };
+
   return {
     toString,
     append,
@@ -116,6 +132,7 @@ const linkedListFactory = () => {
     contains,
     find,
     insertAt,
+    removeAt,
   };
 };
 
@@ -136,8 +153,7 @@ linkedList.append(7);
 linkedList.append(9);
 
 linkedList.toString();
-console.log(linkedList.size());
 
-linkedList.insertAt(10, 2);
+linkedList.removeAt(2);
 
 linkedList.toString();
