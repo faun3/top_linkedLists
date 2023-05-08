@@ -67,6 +67,16 @@ const linkedListFactory = () => {
     return copy;
   };
 
+  const contains = (check) => {
+    let start = head;
+    while (start.nextNode !== null) {
+      if (start.value === check) return true;
+      start = start.nextNode;
+    }
+    if (start.value === check) return true;
+    else return false;
+  };
+
   return {
     toString,
     append,
@@ -75,6 +85,7 @@ const linkedListFactory = () => {
     fetchHead,
     tail,
     pop,
+    contains,
   };
 };
 
@@ -93,8 +104,5 @@ linkedList.prepend(3);
 linkedList.prepend(5);
 linkedList.append(7);
 
-console.log(linkedList.fetchHead());
-
-linkedList.pop();
-
-console.log(linkedList.fetchHead());
+console.log(linkedList.contains(7));
+console.log(linkedList.contains(8));
